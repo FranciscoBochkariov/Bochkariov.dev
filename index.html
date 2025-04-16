@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Francisco|Desarrollador Full Stack</title>
+    <link rel="icon" href="images/Mi-marca.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Favicon - puedes generarlo en https://favicon.io/ -->
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Botón de modo oscuro -->
+    <button id="theme-toggle" aria-label="Cambiar modo claro/oscuro">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Botón de volver arriba -->
+    <button id="back-to-top" aria-label="Volver arriba">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Navegación -->
+    <nav id="navbar">
+        <div class="container">
+            <a href="#home" class="logo">Bochkariov<span>.dev</span></a>
+            <button id="menu-toggle" aria-label="Abrir menú">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul id="menu">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Sobre mí</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#portfolio">Portafolio</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Sección Hero -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="greeting">Hola, soy</span>
+                    <span class="name">Francisco Bochkariov</span>
+                    <span class="title">Desarrollador Full Stack</span>
+                </h1>
+                <p class="hero-text">
+                    <!-- Reemplaza con tu frase de presentación -->
+                    Creo soluciones digitales innovadoras con código limpio y diseño impactante.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#portfolio" class="btn btn-primary">Ver mis proyectos</a>
+                    <a href="#contact" class="btn btn-secondary">Contáctame</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Reemplaza con tu imagen personal -->
+                <div class="image-wrapper">
+                    <img src="images/yo (2).jpg" alt="Tu nombre - Desarrollador Full Stack">
+                    <div class="tech-icons">
+                        <!-- Iconos de tecnologías que manejas -->
+                        <i class="fab fa-html5" title="HTML5"></i>
+                        <i class="fab fa-css3-alt" title="CSS3"></i>
+                        <i class="fab fa-js" title="JavaScript"></i>
+                        <i class="fab fa-php" title="PHP"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Sobre Mí -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Sobre <span>Mí</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <!-- Reemplaza con tu información personal -->
+                    <p>Tengo 20 años y soy un apasionado desarrollador Full Stack certificado por el instituto Punto Com como Programador Visual.</p>
+                    <p>Me especializo en crear aplicaciones web modernas, responsivas y con excelente desempeño. Combino mis conocimientos en frontend y backend para ofrecer soluciones completas.</p>
+                    <p>Cuando no estoy programando, me gusta aprender nuevas tecnologías, contribuir a proyectos open source y mantenerme actualizado con las últimas tendencias en desarrollo web.</p>
+                    
+                    <!-- Tus datos personales -->
+                    <div class="personal-info">
+                        <div>
+                            <span>Nombre:</span>
+                            <span>Francisco Bochkariov Gomez</span>
+                        </div>
+                        <div>
+                            <span>Edad:</span>
+                            <span>20 años</span>
+                        </div>
+                        <div>
+                            <span>Email:</span>
+                            <span>bochkariovf@gmail.com</span>
+                        </div>
+                        <div>
+                            <span>De:</span>
+                            <span>Paysandú, Uruguay</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Botón para descargar CV -->
+                    <a href="images/cv.pdf" download class="btn btn-primary">
+                        <i class="fas fa-download"></i> Descargar CV
+                    </a>
+                </div>
+                <div class="about-stats">
+                    <!-- Puedes ajustar estos números según tu experiencia -->
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="2">0</div>
+                        <div class="stat-text">Proyectos completados</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="1">0</div>
+                        <div class="stat-text">Año de experiencia</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="-">0</div>
+                        <div class="stat-text">Clientes satisfechos</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-count="-">0</div>
+                        <div class="stat-text">Certificaciones</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Sección Habilidades -->
+<section id="skills" class="section">
+    <div class="container">
+    <h2 class="section-title">Mis <span>Tecnologías</span></h2>
+    <div class="skills-content">
+        <!-- Frontend -->
+        <div class="skills-category">
+            <h3>Frontend</h3>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-css3-alt"></i>
+                    <span>CSS3</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-js"></i>
+                    <span>JavaScript</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Backend -->
+        <div class="skills-category">
+            <h3>Backend</h3>
+            <div class="skills-list">
+                <div class="skill-item">
+                    <i class="fab fa-php"></i>
+                    <span>PHP</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fas fa-database"></i>
+                    <span>SQL</span>
+                </div>
+                <div class="skill-item">
+                    <i class="fab fa-windows"></i>
+                    <span>Visual Basic</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+    <!-- Sección Portafolio -->
+    <section id="portfolio" class="section">
+        <div class="container">
+            <h2 class="section-title">Mi <span>Portafolio</span></h2>
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="app">Aplicaciones</button>
+                <button class="filter-btn" data-filter="design">Diseño</button>
+            </div>
+            <div class="portfolio-grid">
+                <!-- Proyecto 1 -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-img">
+                        <img src="images/museum1.png" alt="Proyecto 1">
+                        <div class="portfolio-overlay">
+                            <h3>Tienda MUSEUM</h3>
+                            <p>Tienda con carrito de compras en JavaScript</p>
+                            <div class="portfolio-links">
+                                <a href="https://franciscobochkariov.github.io/Museum/" class="link-icon" title="Ver demo"><i class="fas fa-eye"></i></a>
+                                <a href="https://github.com/FranciscoBochkariov/Museum" class="link-icon" title="Código fuente"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 2 -->
+                <div class="portfolio-item" data-category="app">
+                    <div class="portfolio-img">
+                        <img src="images/autopia.ico" alt="Proyecto 2">
+                        <div class="portfolio-overlay">
+                            <h3>Aplicación de Gestión</h3>
+                            <p>Sistema automatico con base de datos y Visual Basic</p>
+                            <div class="portfolio-links">
+                                <a href="https://franciscobochkariov.github.io/Autopia/" class="link-icon" title="Ver demo"><i class="fas fa-eye"></i></a>
+                                <a href="https://github.com/FranciscoBochkariov/Autopia" class="link-icon" title="Código fuente"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 3 -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-img">
+                        <img src="assets/project3.jpg" alt="Proyecto 3">
+                        <div class="portfolio-overlay">
+                            <h3>Proyecto 3</h3>
+                            <p>...</p>
+                            <div class="portfolio-links">
+                                <a href="#" class="link-icon" title="Ver demo"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="link-icon" title="Código fuente"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 4 -->
+                <div class="portfolio-item" data-category="design">
+                    <div class="portfolio-img">
+                        <img src="assets/project4.jpg" alt="Proyecto 4">
+                        <div class="portfolio-overlay">
+                            <h3>Diseño UI/UX</h3>
+                            <p>Prototipos para aplicación móvil</p>
+                            <div class="portfolio-links">
+                                <a href="#" class="link-icon" title="Ver demo"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="link-icon" title="Código fuente"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 5 -->
+                <div class="portfolio-item" data-category="app">
+                    <div class="portfolio-img">
+                        <img src="assets/project5.jpg" alt="Proyecto 5">
+                        <div class="portfolio-overlay">
+                            <h3>Sistema de Reservas</h3>
+                            <p>Aplicación web para gestión de citas</p>
+                            <div class="portfolio-links">
+                                <a href="#" class="link-icon" title="Ver demo"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="link-icon" title="Código fuente"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Proyecto 6 -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-img">
+                        <img src="assets/project6.jpg" alt="Proyecto 6">
+                        <div class="portfolio-overlay">
+                            <h3>Blog Personal</h3>
+                            <p>Plataforma de blogging con panel de administración</p>
+                            <div class="portfolio-links">
+                                <a href="#" class="link-icon" title="Ver demo"><i class="fas fa-eye"></i></a>
+                                <a href="#" class="link-icon" title="Código fuente"><i class="fab fa-github"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Contacto -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Contácta<span>me</span></h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>No dudes en contactarme</h3>
+                    <p>Estoy disponible para oportunidades de trabajo freelance o tiempo completo. Responderé lo antes posible.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <span>bochkariovf@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Teléfono</h4>
+                                <span>+598 92 307 450</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Ubicación</h4>
+                                <span>Paysandú, Uruguay</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/francisco-bochkariov-g%C3%B3mez-7b2a8b343/" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/FranciscoBochkariov?tab=repositories" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://www.instagram.com/franciscoboch_/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form" action="https://formsubmit.co/bochkariovf@gmail.com" method="POST">
+                    <!-- Campos ocultos para configuración -->
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Nuevo mensaje desde Portafolio">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://tu-dominio.com/gracias.html">
+                    
+                    <!-- Campos visibles del formulario -->
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Tu nombre completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Tu correo electrónico" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Asunto" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Tu mensaje" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#home" class="logo">Bochkariov<span>Dev</span></a>
+                    <p>Desarrollador Full Stack creando soluciones digitales innovadoras.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#about">Sobre mí</a></li>
+                        <li><a href="#skills">Habilidades</a></li>
+                        <li><a href="#portfolio">Portafolio</a></li>
+                        <li><a href="#contact">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> bochkariovf@gmail.com</li>
+                        <li><i class="fas fa-phone"></i> +598 92 307 450</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Paysandú, Uruguay</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="year"></span> Bochkariov.dev. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="Java.js"></script>
+</body>
+</html>
