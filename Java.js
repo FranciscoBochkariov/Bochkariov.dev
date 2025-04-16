@@ -168,142 +168,154 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', checkScroll);
     window.addEventListener('scroll', checkScroll);
 
-    // =============================================
-    // Contador de estadísticas - Versión mejorada para móviles
-    // =============================================
-    const statNumbers = document.querySelectorAll('.stat-number');
-    const aboutSection = document.querySelector('#about');
+// =============================================
+// Contador de estadísticas - Versión mejorada para carga automática en móviles
+// =============================================
+const statNumbers = document.querySelectorAll('.stat-number');
+const aboutSection = document.querySelector('#about');
 
-    function animateStats() {
-        statNumbers.forEach(number => {
-            const target = parseInt(number.getAttribute('data-count'));
-            const duration = 2000;
-            const step = target / (duration / 16);
-            
-            let current = 0;
-            const increment = () => {
-                current += step;
-                if (current < target) {
-                    number.textContent = Math.floor(current);
-                    requestAnimationFrame(increment);
-                } else {
-                    number.textContent = target;
-                }
-            };
-            
-            increment();
-        });
-    }
-
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animateStats();
-                statsObserver.unobserve(entry.target);
+function animateStats() {
+    statNumbers.forEach(number => {
+        const target = parseInt(number.getAttribute('data-count'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        
+        let current = 0;
+        const increment = () => {
+            current += step;
+            if (current < target) {
+                number.textContent = Math.floor(current);
+                requestAnimationFrame(increment);
+            } else {
+                number.textContent = target;
             }
+        };
+        
+        increment();
+    });
+}
+
+const statsObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            animateStats();
+            statsObserver.unobserve(entry.target);
+        }
+    });
+}, { 
+    threshold: 0.5,
+    rootMargin: '0px 0px -100px 0px' // Activa 100px antes de llegar al elemento
+});
+
+// Observar la sección about
+statsObserver.observe(aboutSection);
+
+// Función para verificar visibilidad en móviles
+function checkMobileStats() {
+    if (window.innerWidth <= 768) {
+        const rect = aboutSection.getBoundingClientRect();
+        const isVisible = (
+            rect.top <= (window.innerHeight * 0.75) && 
+            rect.bottom >= 0
+        );
+        
+        if (isVisible) {
+            animateStats();
+            // Dejar de observar si ya está visible
+            statsObserver.unobserve(aboutSection);
+            // Eliminar el event listener para mejorar rendimiento
+            window.removeEventListener('scroll', checkMobileStats);
+        }
+    }
+}
+
+// Verificar al cargar la página
+window.addEventListener('load', checkMobileStats);
+
+// Verificar continuamente durante el scroll en móviles
+window.addEventListener('scroll', checkMobileStats);
+
+// =============================================
+// Formulario de contacto con FormSubmit - Versión corregida
+// =============================================
+const contactForm = document.getElementById('contact-form');
+if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        const form = this;
+        const formFields = this.querySelectorAll('input, textarea');
+        
+        // Mostrar estado de carga
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
+        submitBtn.disabled = true;
+
+        // Ocultar mensajes anteriores si existen
+        const existingMessages = form.querySelectorAll('.form-message');
+        existingMessages.forEach(msg => msg.remove());
+        
+        // Enviar el formulario a FormSubmit
+        fetch(this.action, {
+            method: 'POST',
+            body: new FormData(this),
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => {
+            // FormSubmit siempre devuelve 200, incluso en éxito
+            // Verificamos el contenido de la respuesta
+            return response.text().then(text => {
+                // Si la respuesta contiene "success" o es vacía (FormSubmit a veces devuelve vacío)
+                if (text.includes('success') || text === '') {
+                    return Promise.resolve();
+                } else {
+                    return Promise.reject();
+                }
+            });
+        })
+        .then(() => {
+            // Mostrar mensaje de éxito
+            showFormMessage(form, 'success', '¡Mensaje enviado con éxito!');
+            
+            // Limpiar todos los campos del formulario
+            formFields.forEach(field => {
+                field.value = '';
+            });
+        })
+        .catch(error => {
+            // Mostrar mensaje de error
+            showFormMessage(form, 'error', 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+            console.error('Error en el envío:', error);
+        })
+        .finally(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
         });
-    }, { 
-        threshold: 0.5,
-        rootMargin: '0px 0px -100px 0px' // Activa 100px antes de llegar al elemento
     });
 
-    // Observar la sección about
-    statsObserver.observe(aboutSection);
-
-    // Ejecutar en móviles si la sección está visible al cargar
-    function checkMobileStats() {
-        if (window.innerWidth <= 768) {
-            const rect = aboutSection.getBoundingClientRect();
-            const isVisible = (
-                rect.top <= window.innerHeight * 0.75 && 
-                rect.bottom >= 0
-            );
-            
-            if (isVisible) {
-                animateStats();
-                // Dejar de observar si ya está visible
-                statsObserver.unobserve(aboutSection);
-            }
-        }
+    // Función para mostrar mensajes del formulario
+    function showFormMessage(form, type, message) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `form-message ${type}`;
+        messageDiv.innerHTML = `
+            <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
+            ${message}
+        `;
+        
+        // Insertar después del último elemento del formulario
+        form.appendChild(messageDiv);
+        
+        // Desplazarse suavemente al mensaje
+        messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Eliminar mensaje después de 5 segundos
+        setTimeout(() => {
+            messageDiv.remove();
+        }, 5000);
     }
-
-    // Verificar al cargar y al hacer scroll
-    window.addEventListener('load', checkMobileStats);
-    window.addEventListener('scroll', checkMobileStats);
-
-    // =============================================
-    // Formulario de contacto con FormSubmit - Versión mejorada
-    // =============================================
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const submitBtn = this.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            const form = this;
-            const formFields = this.querySelectorAll('input, textarea');
-            
-            // Mostrar estado de carga
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            submitBtn.disabled = true;
-
-            // Ocultar mensajes anteriores si existen
-            const existingMessages = form.querySelectorAll('.form-message');
-            existingMessages.forEach(msg => msg.remove());
-            
-            // Enviar el formulario a FormSubmit
-            fetch(this.action, {
-                method: 'POST',
-                body: new FormData(this),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Mostrar mensaje de éxito
-                    showFormMessage(form, 'success', '¡Mensaje enviado con éxito!');
-                    
-                    // Limpiar todos los campos del formulario
-                    formFields.forEach(field => {
-                        field.value = '';
-                    });
-                } else {
-                    throw new Error('Error en el envío');
-                }
-            })
-            .catch(error => {
-                // Mostrar mensaje de error
-                showFormMessage(form, 'error', 'Error al enviar el mensaje. Por favor, inténtalo de nuevo.');
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-        });
-
-        // Función para mostrar mensajes del formulario
-        function showFormMessage(form, type, message) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `form-message ${type}`;
-            messageDiv.innerHTML = `
-                <i class="fas ${type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle'}"></i>
-                ${message}
-            `;
-            
-            // Insertar después del último elemento del formulario
-            form.appendChild(messageDiv);
-            
-            // Desplazarse suavemente al mensaje
-            messageDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            
-            // Eliminar mensaje después de 5 segundos
-            setTimeout(() => {
-                messageDiv.remove();
-            }, 5000);
-        }
-    }
-
+}
     // =============================================
     // Actualizar año en el footer
     // =============================================
